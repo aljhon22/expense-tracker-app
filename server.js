@@ -21,6 +21,12 @@ app.get('/api', (req, res) => {
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB Atlas!'))
     .catch(err => console.error('Error connecting to MongoDB:', err));
+    // Idagdag ito para siguradong babasahin ang index.html sa main link
+const path = require('path');
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
